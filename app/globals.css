@@ -1,26 +1,293 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ── Font Variables (set by next/font in layout.tsx) ─────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-fraunces: "Fraunces", serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Design tokens (used in places Tailwind can't reach) */
+  --bg-color: #fdfcf8;
+  --text-primary: #0d1b42;
+  --text-secondary: #4a5568;
+  --accent-color: #ff5722;
+  --accent-light: #ff8a65;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Base Reset ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-fraunces);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Highlight / Accent Italic ───────────────────────────────────────────── */
+.highlight {
+  color: var(--accent-color);
+  font-style: italic;
+}
+
+/* ── Floating tool animation keyframes ───────────────────────────────────── */
+@keyframes floatTool {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes floatVisual {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.02);
+  }
+}
+
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Floater styles (positioned absolutely by component) ─────────────────── */
+.floater {
+  animation: floatTool 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));
+}
+
+.visual-floater {
+  animation: floatVisual 8s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s ease;
+}
+
+.visual-floater:hover {
+  transform: translateY(-12px) scale(1.04) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18) !important;
+  animation-play-state: paused;
+}
+
+/* ── Status dot ──────────────────────────────────────────────────────────── */
+.status-dot {
+  animation: pulseDot 2s infinite;
+}
+
+/* ── Marquee ──────────────────────────────────────────────────────────────── */
+.marquee-track {
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Nav underline hover ─────────────────────────────────────────────────── */
+.nav-link-hover {
+  position: relative;
+}
+
+.nav-link-hover::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+/* ── Toggle Switch ───────────────────────────────────────────────────────── */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--text-primary);
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: var(--accent-color);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(26px);
+}
+
+/* ── Blur background (hero hover effect) ─────────────────────────────────── */
+.blur-bg-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+  border-radius: 30%;
+  pointer-events: none;
+}
+
+.hero-image-container:hover .blur-bg-hero {
+  opacity: 0.4;
+}
+
+/* ── About image hover overlay ───────────────────────────────────────────── */
+.image-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.image-card img {
+  transition: transform 0.5s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+.image-card .hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.image-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+.image-card .hover-overlay span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.image-card:hover .hover-overlay span {
+  transform: translateY(0);
+}
+
+/* ── Scroll progress bar ─────────────────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+  z-index: 9999;
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+}
+
+/* ── Reduce motion accessibility ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .floater,
+  .visual-floater,
+  .marquee-track,
+  .status-dot {
+    animation: none !important;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }
