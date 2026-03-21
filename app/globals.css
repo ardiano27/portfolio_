@@ -1,7 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@theme {
+  /* Fonts */
+  --font-serif: var(--font-fraunces), serif;
+  --font-sans: var(--font-inter), sans-serif;
+
+  /* Colors */
+  --color-cream: #fdfcf8;
+  --color-navy: #0d1b42;
+  --color-accent: #FF5722;
+  --color-accent-light: #ff8a65;
+  --color-muted: #4a5568;
+
+  /* Shadows */
+  --shadow-card: 0 20px 40px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 30px 60px rgba(0,0,0,0.12);
+  --shadow-modal: 0 25px 50px rgba(0,0,0,0.2);
+  --shadow-image: 0 20px 40px rgba(0,0,0,0.1);
+  --shadow-social: 0 4px 15px rgba(0,0,0,0.05);
+
+  /* Border radius */
+  --radius-card: 20px;
+  --radius-pill: 50px;
+
+  /* Animations */
+  --animate-marquee: marqueeScroll 25s linear infinite;
+  --animate-float: floatTool 6s ease-in-out infinite;
+  --animate-float-slow: floatVisual 8s ease-in-out infinite;
+}
 /* ── Font Variables (set by next/font in layout.tsx) ─────────────────────── */
 :root {
   --font-fraunces: "Fraunces", serif;
