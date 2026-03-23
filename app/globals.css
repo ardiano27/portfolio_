@@ -20,7 +20,6 @@
   --radius-card: 20px;
   --radius-pill: 50px;
 
-  /* Aurora animation — registered here so animate-aurora class works */
   --animate-aurora: aurora 60s linear infinite;
 }
 
@@ -29,16 +28,12 @@
   --font-fraunces: "Fraunces", serif;
   --font-inter: "Inter", sans-serif;
 
-  /* Design tokens (used in places Tailwind can't reach) */
   --bg-color: #fdfcf8;
   --text-primary: #0d1b42;
   --text-secondary: #4a5568;
   --accent-color: #ff5722;
   --accent-light: #ff8a65;
 
-  /* ── Aurora color variables ─────────────────────────────────────────────
-     The AuroraBackground component uses var(--blue-500) etc.
-     Tailwind v4 generates --color-blue-500, so we alias them here.      */
   --white:       #ffffff;
   --black:       #000000;
   --transparent: transparent;
@@ -67,7 +62,8 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: var(--font-inter);
-  line-height: 1.6;
+  /* Increased base line-height for better readability across the board */
+  line-height: 1.75;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -79,7 +75,13 @@ h3,
 h4 {
   font-family: var(--font-fraunces);
   font-weight: 600;
-  color: var(--text-primary);
+  /* Tighter line-height for headings to look intentional, not loose */
+  line-height: 1.12;
+}
+
+p {
+  /* Base paragraph breathing room */
+  line-height: 1.85;
 }
 
 a {
@@ -135,7 +137,7 @@ a {
   }
 }
 
-/* ── Aurora keyframe (used by AuroraBackground component) ────────────────── */
+/* ── Aurora keyframe ─────────────────────────────────────────────────────── */
 @keyframes aurora {
   from {
     background-position: 50% 50%, 50% 50%;
@@ -145,12 +147,11 @@ a {
   }
 }
 
-/* Tailwind v4: register animate-aurora as a utility class */
 @utility animate-aurora {
   animation: aurora 60s linear infinite;
 }
 
-/* ── Floater styles (positioned absolutely by component) ─────────────────── */
+/* ── Floater styles ──────────────────────────────────────────────────────── */
 .floater {
   animation: floatTool 6s ease-in-out infinite;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));

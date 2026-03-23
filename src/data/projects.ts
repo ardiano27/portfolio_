@@ -84,7 +84,7 @@ export const sneakPeekImages = [
   { src: "/assets/design/rep.png", alt: "Design work" },
   { src: "/assets/design/sertijab.png", alt: "Certificate design" },
   { src: "/assets/images/develop.png", alt: "Developer" },
-  { src: "/assets/images/graphic.jpg", alt: "Graphic work" },
+  { src: "/assets/design/login.png", alt: "Login page design" },
   { src: "/assets/works/knu.jpeg", alt: "Trash-Bean project" },
   { src: "/assets/works/konekin.png", alt: "Konekin project" },
 ];

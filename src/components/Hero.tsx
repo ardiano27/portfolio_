@@ -109,7 +109,7 @@ export default function Hero() {
       >
         {/* ── Left: Text Content ─────────────────────────────────────────── */}
         <motion.div
-          className="flex-1 max-w-[500px] z-[2] text-center lg:text-left"
+          className="flex-1 max-w-[500px] z-[2] text-center lg:text-left lg:ml-[10%]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
