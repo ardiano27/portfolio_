@@ -55,7 +55,7 @@ className="relative px-[8%] py-40 overflow-hidden"
       <div className="max-w-[1200px] mx-auto relative z-10">
         {/* ── Header ─────────────────────────────────────────────────── */}
         <motion.div
-          className="text-center mb-36"
+className="flex flex-col items-center justify-center text-center mb-44 min-h-[40vh]"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
@@ -66,7 +66,7 @@ className="relative px-[8%] py-40 overflow-hidden"
             alt="Portfolio logo"
             width={52}
             height={52}
-            className="mx-auto mb-8 brightness-0 invert opacity-80"
+className="mx-auto mb-6 brightness-0 invert opacity-80"
           />
           <h2
             className="font-serif text-[clamp(2rem,5vw,3.5rem)] font-light italic tracking-[-1px] mb-5"
@@ -93,7 +93,7 @@ className="relative px-[8%] py-40 overflow-hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-30px" }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-className="group flex flex-col gap-6 cursor-default px-10 py-20 relative"
+className="group flex flex-col items-center text-center gap-6 cursor-default px-8 py-20 relative"
               style={{
                 borderRight: i < 2 ? "1px solid rgba(253,252,248,0.08)" : "none",
               }}

@@ -116,7 +116,7 @@ className="px-[8%] py-40"
 
       {/* Header */}
       <motion.div
-        className="mb-28"
+className="mb-28 text-center"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}

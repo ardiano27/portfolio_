@@ -26,7 +26,7 @@ export default function About() {
 
             {/* ── Left: Text ────────────────────────────────────────────── */}
             <motion.div
-              className="flex-1 max-w-[580px]"
+              className="flex-1 max-w-[580px] text-center"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -45,7 +45,7 @@ export default function About() {
               </motion.span>
 
               <h2
-                className="font-serif text-[clamp(2.2rem,3.5vw,3rem)] font-extrabold mb-6 leading-[1.12]"
+                className="font-serif text-[clamp(2.2rem,3.5vw,3rem)] font-extrabold mb-8 leading-[1.12] mx-auto w-fit"
                 style={{ color: "#111111" }}
               >
                 Behind The Canvas
@@ -53,7 +53,7 @@ export default function About() {
 
               {/* Blockquote */}
               <div
-                className="mb-10 pl-5"
+                className="mb-10 pl-5 mx-auto w-fit"
                 style={{ borderLeft: "3px solid #ff5722" }}
               >
                 <p
@@ -88,7 +88,7 @@ export default function About() {
 
               {/* Badge pills */}
               <motion.div
-                className="flex flex-wrap gap-3"
+                className="flex flex-wrap gap-3 justify-center w-full"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -136,7 +136,7 @@ export default function About() {
                   sizes="220px"
                 />
                 <div className="hover-overlay">
-                  <span>Hi, it&apos;s me</span>
+                  <span>Hi, it's me</span>
                 </div>
               </motion.div>
 
